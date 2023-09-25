@@ -1,15 +1,15 @@
-package com.security.user;
+package com.security.user; 
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Service; 
 
-import lombok.RequiredArgsConstructor;
+import lombok.RequiredArgsConstructor; 
 
-@Service
-@RequiredArgsConstructor
-public class UserService {
-    private final UserRepository userRepository;
+@Service 
+@RequiredArgsConstructor 
+public class UserService { 
+    private final UserRepository userRepository; 
 
-    public User getUserByEmail(String email) {
-        return userRepository.getUserByEmail(email);
-    }
-}
+    public User getUserByEmail(String email) { 
+        return userRepository.getUserByEmail(email); 
+    } 
+} 

@@ -5,14 +5,22 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User implements UserDetails{
     private Integer id;
     private String name;
-    private String email;
+    private String emailAddress;
     private String password;
+    private String phoneNumber;
+    private Boolean isBusinessOwner;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -21,7 +29,7 @@ public class User implements UserDetails{
     }
     @Override
     public String getUsername() {
-        return email;
+        return emailAddress;
     }
 
     @Override
