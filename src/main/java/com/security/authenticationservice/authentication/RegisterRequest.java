@@ -1,4 +1,4 @@
-package com.security.authentication;
+package com.security.authenticationservice.authentication;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

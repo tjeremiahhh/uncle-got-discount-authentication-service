@@ -1,4 +1,4 @@
-package com.security.authentication;
+package com.security.authenticationservice.authentication;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.security.user.User;
+import com.security.authenticationservice.user.User;
 
 import lombok.RequiredArgsConstructor;
 
@@ -28,7 +28,7 @@ public class AuthenticationController {
     }
 
     @GetMapping("/getUserDetails")
-    public User getUserDetails(String email) {
+    public String getUserDetails(String email) {
         return authenticationService.getUserDetails(email);
     }
 }

@@ -1,13 +1,13 @@
-package com.security.authentication;
+package com.security.authenticationservice.authentication;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.security.config.JwtService;
-import com.security.user.User;
-import com.security.user.UserRepository;
+import com.security.authenticationservice.config.JwtService;
+import com.security.authenticationservice.user.User;
+import com.security.authenticationservice.user.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -56,7 +56,7 @@ public class AuthenticationService {
             .build();
     }
 
-    public User getUserDetails(String email) {
+    public String getUserDetails(String email) {
         return userRepository.getUserDetails(email);
     }
 }

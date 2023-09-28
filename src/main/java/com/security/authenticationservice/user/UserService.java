@@ -1,4 +1,4 @@
-package com.security.user; 
+package com.security.authenticationservice.user; 
 
 import org.springframework.stereotype.Service; 
 

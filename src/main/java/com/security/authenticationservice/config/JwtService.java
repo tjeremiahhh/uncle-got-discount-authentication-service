@@ -1,4 +1,4 @@
-package com.security.config;
+package com.security.authenticationservice.config;
 
 import java.security.Key;
 import java.util.Date;
@@ -9,7 +9,7 @@ import java.util.function.Function;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import com.security.user.User;
+import com.security.authenticationservice.user.User;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

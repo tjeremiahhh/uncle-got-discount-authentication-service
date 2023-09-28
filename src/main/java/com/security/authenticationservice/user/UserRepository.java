@@ -1,10 +1,10 @@
-package com.security.user;
+package com.security.authenticationservice.user;
 
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
-import com.security.authentication.RegisterRequest;
-import com.security.common.repository.SimpleJdbcRepositoryImpl;
+import com.security.authenticationservice.authentication.RegisterRequest;
+import com.security.authenticationservice.common.repository.SimpleJdbcRepositoryImpl;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,10 +20,10 @@ public class UserRepository extends SimpleJdbcRepositoryImpl {
         return null;
     }
 
-    public User getUserDetails(String email) {
+    public String getUserDetails(String email) {
         StringBuilder sqlQuery = new StringBuilder(
             "SELECT "
-            +"    * "
+            +"    NAME "
             +"FROM "
             +"    user "
             +"WHERE "
@@ -32,7 +32,7 @@ public class UserRepository extends SimpleJdbcRepositoryImpl {
 
         MapSqlParameterSource sqlParameters = new MapSqlParameterSource("email", email);
 
-        return querySingleObject(sqlQuery.toString(), sqlParameters, User.class);
+        return querySingleObject(sqlQuery.toString(), sqlParameters, String.class);
     }
 
     public long registerUser(RegisterRequest user) {

@@ -1,4 +1,4 @@
-package com.security.config;
+package com.security.authenticationservice.config;
 
 import java.io.IOException;
 
@@ -10,8 +10,8 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.security.user.User;
-import com.security.user.UserService;
+import com.security.authenticationservice.user.User;
+import com.security.authenticationservice.user.UserService;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

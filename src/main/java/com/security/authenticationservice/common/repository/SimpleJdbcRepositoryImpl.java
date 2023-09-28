@@ -1,4 +1,4 @@
-package com.security.common.repository;
+package com.security.authenticationservice.common.repository;
 
 import java.util.ArrayList;
 import java.util.List;
