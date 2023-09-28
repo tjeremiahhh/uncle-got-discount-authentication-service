@@ -7,14 +7,13 @@ import org.springframework.stereotype.Service;
 
 import com.security.authenticationservice.config.JwtService;
 import com.security.authenticationservice.user.User;
-import com.security.authenticationservice.user.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
-    private final UserRepository userRepository;
+    private final AuthenticationRepository authenticationRepository;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -27,11 +26,12 @@ public class AuthenticationService {
             .name(request.getName())
             .emailAddress(request.getEmailAddress())
             .password(passwordEncoder.encode(request.getPassword()))
+            .phoneNumber(request.getPhoneNumber())
             .isBusinessOwner(false)
             .build();
         
         //save to db
-        userRepository.registerUser(request);
+        authenticationRepository.registerUser(user);
 
         var jwtToken = jwtService.generateToken(user);
 
@@ -41,12 +41,12 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmailAddress(), request.getPassword()));
         
-        var user = userRepository.findByEmail(request.getEmail());
+        var user = authenticationRepository.getUserByEmail(request.getEmailAddress());
 
         if(user == null) {
-            //throw exception
+            System.out.println("error123");
         }
 
         var jwtToken = jwtService.generateToken(user);
@@ -56,7 +56,7 @@ public class AuthenticationService {
             .build();
     }
 
-    public String getUserDetails(String email) {
-        return userRepository.getUserDetails(email);
+    public User getUserDetails(String emailAddress) {
+        return authenticationRepository.getUserDetails(emailAddress);
     }
 }

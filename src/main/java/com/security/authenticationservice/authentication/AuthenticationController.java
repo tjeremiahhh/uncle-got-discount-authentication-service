@@ -28,7 +28,7 @@ public class AuthenticationController {
     }
 
     @GetMapping("/getUserDetails")
-    public String getUserDetails(String email) {
-        return authenticationService.getUserDetails(email);
+    public User getUserDetails(String emailAddress) {
+        return authenticationService.getUserDetails(emailAddress);
     }
 }

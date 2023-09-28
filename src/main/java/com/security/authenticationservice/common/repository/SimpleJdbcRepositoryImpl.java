@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jdbc.core.JdbcAggregateTemplate;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -147,7 +146,7 @@ public class SimpleJdbcRepositoryImpl implements SimpleJdbcRepository {
     // }
 
     private boolean isGeneralClass(Class<?> clazz) {
-        return !clazz.getPackage().getName().startsWith("dsta");
+        return !clazz.getPackage().getName().startsWith("com");
     }
 
     @Override

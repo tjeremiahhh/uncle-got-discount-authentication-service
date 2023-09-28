@@ -2,11 +2,8 @@ package com.security.authenticationservice.config;
 
 import java.security.Key;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Function;
 
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.security.authenticationservice.user.User;
@@ -19,7 +16,7 @@ import io.jsonwebtoken.security.Keys;
 
 @Service
 public class JwtService {
-    private static final String SECRET_KEY = "ftq2mmQEk5TJQvm9V9fmCaPhYmDtsCPK";
+    private static final String SECRET_KEY = "IRGPRsZoK7daSffp4SEeNAV8NRKG/TZ09LeH3Qr94+AL1XE7BZuUxoIfXWXfNmzOxbD8rH5zzqDiTFj39Wq+ezAignBNT8DAO2Ca8b5+e8/ieATJ33RwMuHp+KmvMPBs4I0caVMHlqL2rKZSEt4Th3r1tsUW/aky2CLeizRrMpBUaddvnvzKgzWKaSp1Z7PWHKIrExp3q4zDSA7cA/HHIL6n78UsLI+5DnV1qGQ/uV0Qcta+v7+fWhEggTxFOEaRIQjFlbrlkv+nql63WvLcVX4mRwWJoPzXh9NN5hdIfFipMZfDsBYnMyWKjPS2o//URB/v8M5B7D3k7dMEg0Y42/8jWmlzCU6QXR/A5ppYPis=";
 
     public String extractUsername(String token) {
         return extractClaims(token, Claims::getSubject);
@@ -30,15 +27,16 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    public String generateToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
-    }
-
-    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
+    public String generateToken(User user) {
         return Jwts
             .builder()
-            .setClaims(extraClaims)
-            .setSubject(userDetails.getUsername())
+            .setHeaderParam("typ", "JWT")
+            .claim("id", user.getId())
+            .claim("name", user.getName())
+            .claim("emailAddress", user.getEmailAddress())
+            .claim("phoneNumber", user.getPhoneNumber())
+            .claim("isBusinessOwner", user.getIsBusinessOwner())
+            .setSubject(user.getUsername())
             .setIssuedAt(new Date(System.currentTimeMillis()))
             .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
             .signWith(getSignInKey(), SignatureAlgorithm.HS256)
