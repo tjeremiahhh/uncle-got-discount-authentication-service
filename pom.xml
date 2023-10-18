@@ -86,6 +86,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>uncle-got-discount-authentication-service</finalName>
 	</build>
 
 </project>
