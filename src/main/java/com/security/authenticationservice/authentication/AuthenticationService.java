@@ -1,5 +1,7 @@
 package com.security.authenticationservice.authentication;
 
+import java.util.List;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -58,5 +60,9 @@ public class AuthenticationService {
 
     public User getUserDetails(String emailAddress) {
         return authenticationRepository.getUserDetails(emailAddress);
+    }
+
+    public List<User> getBusinessOwners() {
+        return authenticationRepository.getBusinessOwners();
     }
 }

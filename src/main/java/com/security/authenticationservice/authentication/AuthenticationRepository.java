@@ -1,5 +1,7 @@
 package com.security.authenticationservice.authentication;
 
+import java.util.List;
+
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
@@ -59,4 +61,17 @@ public class AuthenticationRepository extends SimpleJdbcRepositoryImpl {
 
        return update(sqlQuery.toString(), sqlParameters);
     } 
+
+    public List<User> getBusinessOwners() {
+        StringBuilder sqlQuery = new StringBuilder(
+            "SELECT "
+            +"    * "
+            +"FROM "
+            +"    user "
+            +"WHERE "
+            +"    is_business_owner = 1 "
+        );
+        
+        return queryList(sqlQuery.toString(), User.class);
+    }
 }

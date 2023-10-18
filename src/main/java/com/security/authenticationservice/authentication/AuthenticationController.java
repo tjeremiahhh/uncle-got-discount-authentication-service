@@ -1,5 +1,7 @@
 package com.security.authenticationservice.authentication;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,5 +32,10 @@ public class AuthenticationController {
     @GetMapping("/getUserDetails")
     public User getUserDetails(String emailAddress) {
         return authenticationService.getUserDetails(emailAddress);
+    }
+
+    @GetMapping("/getBusinessOwners")
+    public List<User> getBusinessOwners() {
+        return authenticationService.getBusinessOwners();
     }
 }
