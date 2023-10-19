@@ -35,7 +35,7 @@ public class AuthenticationController {
     }
 
     @GetMapping("/getBusinessOwners")
-    public User getBusinessOwners() {
+    public List<User> getBusinessOwners() {
         return authenticationService.getBusinessOwners();
     }
 }

@@ -62,7 +62,7 @@ public class AuthenticationService {
         return authenticationRepository.getUserDetails(emailAddress);
     }
 
-    public User getBusinessOwners() {
+    public List<User> getBusinessOwners() {
         return authenticationRepository.getBusinessOwners();
     }
 }
