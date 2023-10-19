@@ -62,16 +62,16 @@ public class AuthenticationRepository extends SimpleJdbcRepositoryImpl {
        return update(sqlQuery.toString(), sqlParameters);
     } 
 
-    public List<User> getBusinessOwners() {
+    public User getBusinessOwners() {
         StringBuilder sqlQuery = new StringBuilder(
             "SELECT "
-            +"    * "
+            +"  * "
             +"FROM "
             +"    user "
             +"WHERE "
-            +"    is_business_owner = 1 "
+            +"    is_business_owner = 1 limit 1 "
         );
         
-        return queryList(sqlQuery.toString(), User.class);
+        return querySingleObject(sqlQuery.toString(), User.class);
     }
 }

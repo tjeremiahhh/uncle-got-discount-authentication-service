@@ -34,8 +34,8 @@ public class AuthenticationController {
         return authenticationService.getUserDetails(emailAddress);
     }
 
-    @PostMapping("/getBusinessOwners")
-    public List<User> getBusinessOwners(String emailAddress) {
-        return authenticationService.getBusinessOwners(emailAddress);
+    @GetMapping("/getBusinessOwners")
+    public User getBusinessOwners() {
+        return authenticationService.getBusinessOwners();
     }
 }
