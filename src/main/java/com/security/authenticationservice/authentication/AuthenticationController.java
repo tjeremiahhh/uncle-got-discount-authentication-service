@@ -1,7 +1,7 @@
 package com.security.authenticationservice.authentication;
 
 import java.util.List;
-
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +34,7 @@ public class AuthenticationController {
         return authenticationService.getUserDetails(emailAddress);
     }
 
-    @GetMapping("/getBusinessOwners")
+    @GetMapping(value = "/getBusinessOwners", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getBusinessOwners() {
         return authenticationService.getBusinessOwners();
     }
