@@ -13,3 +13,16 @@ logging.level.org.springframework:
     JdbcTemplate: TRACE
     StatementCreatorUtils: TRACE
   web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: ERROR
+
+spring:
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+            - GET
+            - POST
