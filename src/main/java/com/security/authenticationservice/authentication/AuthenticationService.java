@@ -2,10 +2,12 @@ package com.security.authenticationservice.authentication;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.security.authenticationservice.config.JwtService;
 import com.security.authenticationservice.user.User;
@@ -48,7 +50,7 @@ public class AuthenticationService {
         var user = authenticationRepository.getUserByEmail(request.getEmailAddress());
 
         if(user == null) {
-            System.out.println("error123");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Please enter a valid email address");
         }
 
         var jwtToken = jwtService.generateToken(user);
