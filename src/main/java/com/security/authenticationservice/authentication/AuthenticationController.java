@@ -17,7 +17,8 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api/authentication")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = { "http://localhost:4200",
+        "http://ugd-frontend-app-lb-1592138430.ap-southeast-1.elb.amazonaws.com" })
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
